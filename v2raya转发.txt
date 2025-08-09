@@ -11,7 +11,7 @@ sudo apt install /root/v2ray_5.28.0_amd64.deb
 
 透明代理规则与端口一致，然后选redirect，端口选rountinga，设置里面的socks和http填0，不开启无验证的
 source配置找到wireguard配置的虚拟ip对应出口outbound即可，左上角创建outbound，选中一个或多个
-一个outbound可以多节点，应该不超时不会切换，socks可以多节点具体看用途，切换ip可能影响游戏
+一个outbound可以多节点，socks可以多节点具体看用途，切换ip可能影响游戏，国内是的，但是国外游戏，我看日志负载均衡，竟然没退出对局
 更多参考官网
 （具体，比如创建wg1端口，获得虚拟ip，这个用于hk方向，创建outbound命名hk，rountinga把虚拟ip和出口标签对应）
 （这样整个wg1端口的用户都会走v2raya出站名为hk的，可以继续创建wg2，用于jp方向，虚拟ip，outbound和rountinga配置正确就行）
@@ -34,3 +34,4 @@ inboundTag(socks_hk1_auth1, socks_hk1_auth2, socks_hk1_noauth1) -> hk1
 inboundTag(socks_jp1_auth1, socks_jp1_auth2, socks_jp1_noauth1) -> jp1
 
 default: direct
+
