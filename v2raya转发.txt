@@ -4,6 +4,11 @@
 sudo apt install /root/v2raya_2.2.6.7_amd64.deb
 sudo apt install /root/v2ray_5.28.0_amd64.deb
 
+启动sudo systemctl start v2raya.service
+开机自启动sudo systemctl enable v2raya.service
+
+重启sudo systemctl restart v2raya.service
+
 透明代理规则与端口一致，然后选redirect，端口选rountinga，设置里面的socks和http填0，不开启无验证的
 source配置找到wireguard配置的虚拟ip对应出口outbound即可，左上角创建outbound，选中一个或多个
 一个outbound可以多节点，应该不超时不会切换，socks可以多节点具体看用途，切换ip可能影响游戏
@@ -23,11 +28,9 @@ inbound:socks_hk1_auth2 = socks(address: 0.0.0.0, port: 51082, udp: true, user: 
 inbound:socks_jp1_auth1 = socks(address: 0.0.0.0, port: 51085, udp: true, user: jpuser1, pass: jppass1)
 inbound:socks_jp1_auth2 = socks(address: 0.0.0.0, port: 51086, udp: true, user: jpuser2, pass: jppass2)
 #inbound:socks_jp1_noauth1 = socks(address: 0.0.0.0, port: 51087, udp: true)
-
 #HK1 分流（3个入站 → hk1 出口）
 inboundTag(socks_hk1_auth1, socks_hk1_auth2, socks_hk1_noauth1) -> hk1
 #JP1 分流（3个入站 → jp1 出口）
 inboundTag(socks_jp1_auth1, socks_jp1_auth2, socks_jp1_noauth1) -> jp1
-
 
 default: direct
